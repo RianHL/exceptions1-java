@@ -18,11 +18,9 @@ public class Exceptions1Java {
         System.out.println("Check-out date (dd/MM/yyyy): ");
         Date check_out = sdf.parse(sc.next());
         Date now = new Date();
-        if (check_in.before(now) || check_out.before(now)){
-            System.out.println("Error in reservation: Check-out date must be before the now date");
-        }
-        if(!check_out.after(check_in)){
-            System.out.println("Error in reservation: Check-out date must be after check-in date");
+        if (check_in.before(now) || check_out.before(check_in)){
+            System.out.println("Error in reservation: Check-in date must be before the check_out date");
+            System.out.println("Error in reservation: Check-out date must be after the check_in date");
         }
         else{
             Reservation reservation = new Reservation(number, check_in, check_out);
@@ -32,15 +30,12 @@ public class Exceptions1Java {
             Date check_in_update = sdf.parse(sc.next());
             System.out.println("Check-out date (dd/MM/yyyy): ");
             Date check_out_update = sdf.parse(sc.next());
-            if (check_in_update.before(now) || check_out_update.before(now)){
-            System.out.println("Error in reservation: Check-out date must be before the now date");
-            }
-            
-            if(!check_out_update.after(check_in)){
-            System.out.println("Error in reservation: Check-out date must be after check-in date");
+            String error = reservation.updateDates(check_in_update, check_out_update);
+            if(error != null){
+                System.out.println(error);
+                
             }
             else{
-                reservation.updateDates(check_in_update, check_out_update);
                 System.out.println("Reservation: " + reservation);
             }
         }
