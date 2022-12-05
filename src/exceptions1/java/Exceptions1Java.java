@@ -35,6 +35,7 @@ public class Exceptions1Java {
             if (check_in_update.before(now) || check_out_update.before(now)){
             System.out.println("Error in reservation: Check-out date must be before the now date");
             }
+            
             if(!check_out_update.after(check_in)){
             System.out.println("Error in reservation: Check-out date must be after check-in date");
             }
